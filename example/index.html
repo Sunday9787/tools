@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="../dist/bundle.umd.js"></script>
+  <title>Document</title>
+</head>
+<body>
+  <img src="./images/emjio.gif" alt="">
+  <script>
+    var els = document.createDocumentFragment();
+    var words = tools.transformUpperCase(123456789);
+
+    Array.prototype.forEach.call(words, function (word) {
+      var el = document.createElement('p');
+      el.innerText = word;
+      els.append(el)
+    });
+
+    const phoneEl = document.createElement('p');
+    phoneEl.innerText = tools.encrypPhone('17682311696')
+
+    document.body.appendChild(phoneEl);
+
+    document.body.appendChild(els);
+    // document.body.appendChild(phoneEl);
+  </script>
+</body>
+</html>

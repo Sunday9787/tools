@@ -1,0 +1,31 @@
+{
+  "compilerOptions": {
+    "strict": true,
+    "importHelpers": true,
+    "moduleResolution": "node",
+    "experimentalDecorators": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "sourceMap": true,
+    "baseUrl": ".",
+    "declaration": true,
+    "declarationDir": "./@types",
+    "types": [
+      "node",
+      "mocha"
+    ],
+    "newLine": "LF",
+    "lib": [
+      "esnext",
+    ],
+  },
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.d.ts", "@types/common.d.ts",
+  ],
+  "exclude": [
+    "node_modules",
+    "test/*",
+    "@types",
+  ]
+}
