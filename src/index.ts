@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Dictionary } from './@types/common';
 /**
  * 数字转换为大写汉字
@@ -31,14 +32,19 @@ export function encrypPhone(phone: string) {
  * @param {'desc' | 'asc'} [order='desc']
  * @returns
  */
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function sort<T extends Dictionary<any>, K extends keyof T>(arry: T[], key: K, order: 'desc' | 'asc' = 'asc') {
   function compare(property: K) {
     return function(firstEl: T, secondEl: T) {
-      const value1 = firstEl[property];
-      const value2 = secondEl[property];
+      const value1: any = firstEl[property];
+      const value2: any = secondEl[property];
+      if (typeof value1 === 'string') {
+        return value1.localeCompare(value2);
+      }
       if (order === 'asc') {
         return value1 - value2;
+      }
+      if (typeof value1 === 'string') {
+        return value1.localeCompare(value2);
       }
       return value2 - value1;
     };
