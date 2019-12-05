@@ -43,9 +43,6 @@ export function sort<T extends Dictionary<any>, K extends keyof T>(arry: T[], ke
       if (order === 'asc') {
         return value1 - value2;
       }
-      if (typeof value1 === 'string') {
-        return value1.localeCompare(value2);
-      }
       return value2 - value1;
     };
   }
