@@ -7,7 +7,10 @@
     "build": "NODE_ENV=development rollup -c ./build/rollup.config.js",
     "build:pord": "NODE_ENV=production rollup -c ./build/rollup.config.js",
     "test": "jest",
-    "test-cov": "jest --coverage"
+    "test-cov": "jest --coverage",
+    "lint": "eslint ./src/*.ts ./test/*.ts --fix",
+    "commit": "git-cz",
+    "release": "standard-version"
   },
   "types": "./@types/index.d.ts",
   "directories": {
@@ -23,23 +26,35 @@
     "@babel/plugin-external-helpers": "^7.2.0",
     "@babel/plugin-transform-runtime": "^7.6.2",
     "@babel/preset-env": "^7.7.1",
+    "@commitlint/cli": "^8.2.0",
+    "@commitlint/config-conventional": "^8.2.0",
     "@types/jest": "^24.0.23",
     "@typescript-eslint/eslint-plugin": "^2.8.0",
     "@typescript-eslint/parser": "^2.8.0",
+    "commitizen": "^4.0.3",
     "core-js": "^3.4.1",
     "coveralls": "^3.0.8",
+    "cz-conventional-changelog": "^3.0.2",
     "eslint": "^6.6.0",
     "eslint-config-prettier": "^6.6.0",
     "eslint-plugin-prettier": "^3.1.1",
+    "husky": "^3.1.0",
     "jest": "^24.9.0",
+    "lint-staged": "^9.5.0",
     "prettier": "^1.19.1",
     "rollup": "^1.27.2",
     "rollup-plugin-babel": "^4.3.3",
     "rollup-plugin-typescript2": "^0.25.2",
     "rollup-plugin-uglify": "^6.0.3",
+    "standard-version": "^7.0.1",
     "ts-jest": "^24.2.0",
     "ts-node": "^8.5.2",
     "typescript": "^3.7.2"
   },
-  "dependencies": {}
+  "dependencies": {},
+  "config": {
+    "commitizen": {
+      "path": "node_modules/cz-conventional-changelog"
+    }
+  }
 }
