@@ -163,4 +163,14 @@ describe('tools.js', () => {
       expect(tools.isIdNumber('411527199605300')).toBeTruthy();
     });
   });
+
+  describe('tools.fileExt', () => {
+    test('tools.fileExt("asdasd.jpg") should return .jpg', () => {
+      expect(tools.fileExt('asdasd.jpg')).toBe('.jpg');
+    });
+
+    test('tools.fileExt("asdasd.jpg") should return null', () => {
+      expect(tools.fileExt('asdasdjpg')).toBeNull();
+    });
+  });
 });

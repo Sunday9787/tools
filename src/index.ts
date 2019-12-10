@@ -107,3 +107,15 @@ export function isSecurityName(name: string) {
 export function isIdNumber(id: string) {
   return /^\d{14}|\d{17}(\d|[xX])$/.test(id);
 }
+
+/**
+ * 获取文件后缀
+ *
+ * @export
+ * @param {string} file
+ * @returns
+ */
+export function fileExt(file: string) {
+  const ext = file.match(/(\.(?!\d)[a-zA-Z\d]+)$/);
+  return ext && ext[0];
+}
