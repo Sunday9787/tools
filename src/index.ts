@@ -119,3 +119,24 @@ export function fileExt(file: string) {
   const ext = file.match(/(\.(?!\d)[a-zA-Z\d]+)$/);
   return ext && ext[0];
 }
+
+/**
+ * 节流
+ *
+ * @export
+ * @template T
+ * @template C
+ * @param {T[]} array 长度
+ * @param {Function} process 执行函数
+ * @param {(C | null)} [context=null] context
+ */
+export function chunk<T, C>(array: T[], process: Function, context: C | null = null) {
+  setTimeout(function() {
+    const item = array.shift();
+    process.call(context, item);
+    if (array.length > 0) {
+      // @ts-ignore
+      setTimeout(arguments.callee, 100);
+    }
+  }, 100);
+}
