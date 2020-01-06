@@ -41,6 +41,7 @@ module.exports = {
      * @see https://cloud.tencent.com/developer/section/1135777
      */
     'no-unused-expressions': ['error', { "allowShortCircuit": true, "allowTernary": true }],
+    '@typescript-eslint/ban-ts-ignore': 'off',
   },
   parserOptions: {
     parser: '@typescript-eslint/parser',
