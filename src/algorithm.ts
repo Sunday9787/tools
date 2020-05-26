@@ -150,7 +150,7 @@ export function chunk<T>(arr: T[], size: number) {
 }
 
 export function bouncer(arr: number[], ...arg: number[]) {
-  arr.filter(item => arg.indexOf(item) > -1);
+  return arr.filter(item => arg.indexOf(item) > -1);
 }
 
 /**

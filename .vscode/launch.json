@@ -7,14 +7,16 @@
     {
       "type": "node",
       "request": "launch",
-      "name": "Launch Program",
+      "name": "Launch TS",
       "skipFiles": [
         "<node_internals>/**"
       ],
-      "program": "${file}",
-      "outFiles": [
-        "${workspaceFolder}/**/*.js"
-      ]
+      "program": "${workspaceRoot}/node_modules/.bin/ts-node",
+      "args": [
+        "${file}"
+      ],
+      "cwd": "${workspaceRoot}",
+      "protocol": "inspector"
     }
   ]
 }
