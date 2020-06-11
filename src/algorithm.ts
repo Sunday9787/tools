@@ -33,6 +33,13 @@ export function factorialize(num: number) {
   }, 1);
 }
 
+export function factorialize2(num: number) {
+  return (function fn(val, count): number {
+    if (count >= num) return val;
+    return fn(count * val, count + 1);
+  })(num, 1);
+}
+
 /**
  * 判断是不是回文字符串
  *
