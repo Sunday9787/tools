@@ -202,3 +202,17 @@ export function diff(arr1: number[], arr2: number[]) {
   });
   return arr1.filter(item => !result.includes(item)).concat(arr2.filter(item => !result.includes(item)));
 }
+
+/**
+ * @param {number} x
+ */
+export function* fib(x: number) {
+  let a = 1;
+  let b = 1;
+  let n = 0;
+  while (n <= x) {
+    yield a;
+    [a, b] = [b, a + b];
+    n++;
+  }
+}

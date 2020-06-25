@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Dictionary } from './@types/common';
+type Dictionary<T> = { [key: string]: T };
+
 /**
  * 数字转换为大写汉字
  */

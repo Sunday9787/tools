@@ -4,7 +4,6 @@ import babel from 'rollup-plugin-babel';
 import { uglify } from 'rollup-plugin-uglify';
 // import uglify from 'rollup-plugin-uglify-es';
 import { DEFAULT_EXTENSIONS } from '@babel/core';
-
 /**
  *
  * @param {string} dir
@@ -27,31 +26,31 @@ const config = {
   cache: true,
   output: [
     {
-      file: resolve(fileName('dist/index')),
-      format: 'cjs',
+      file: resolve(fileName('dist/index.esm')),
+      format: 'es',
       name: 'tools',
       sourcemap: true,
     },
     {
-      file: resolve(fileName('dist/bundle.umd')),
+      file: resolve(fileName('dist/index.umd')),
       format: 'umd',
       name: 'tools',
       sourcemap: true,
     },
     {
-      file: resolve(fileName('dist/bundle.amd')),
+      file: resolve(fileName('dist/index.amd')),
       format: 'amd',
       name: 'tools',
       sourcemap: true,
     },
     {
-      file: resolve(fileName('dist/bundle.iife')),
+      file: resolve(fileName('dist/index.iife')),
       format: 'iife',
       name: 'tools',
       sourcemap: true,
     },
     {
-      file: resolve(fileName('dist/bundle.cmd')),
+      file: resolve(fileName('dist/index.cjs')),
       format: 'cjs',
       name: 'tools',
       sourcemap: true,
@@ -59,7 +58,7 @@ const config = {
   ],
   plugins: [
     typescript({
-      tsconfig: resolve('tsconfig.json'),
+      tsconfig: resolve('tsconfig.json', '.'),
       useTsconfigDeclarationDir: true,
     }),
     babel({
