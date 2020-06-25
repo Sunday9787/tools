@@ -105,4 +105,10 @@ describe('algorithm', () => {
       expect(algorithm.rot13('SERR CVMMN!')).toBe('FREE PIZZA!');
     });
   });
+
+  describe('algorithm.factorialize2', () => {
+    test('factorialize2("5") 应该返回 "125"', () => {
+      expect(algorithm.factorialize2(5)).toBe(120);
+    });
+  });
 });
