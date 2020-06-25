@@ -1,8 +1,7 @@
 import path from 'path';
 import typescript from 'rollup-plugin-typescript2';
 import babel from 'rollup-plugin-babel';
-import { uglify } from 'rollup-plugin-uglify';
-// import uglify from 'rollup-plugin-uglify-es';
+import uglify from 'rollup-plugin-uglify-es';
 import { DEFAULT_EXTENSIONS } from '@babel/core';
 /**
  *

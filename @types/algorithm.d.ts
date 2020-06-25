@@ -15,6 +15,7 @@ export declare function reverseString(str: string): string;
  * @example factorialize(5) === 120
  */
 export declare function factorialize(num: number): number;
+export declare function factorialize2(num: number): number;
 /**
  * 判断是不是回文字符串
  *

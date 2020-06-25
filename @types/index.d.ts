@@ -73,4 +73,25 @@ export declare function isIdNumber(id: string): boolean;
  * @returns
  */
 export declare function fileExt(file: string): string | null;
-export {};
+/**
+ * 函数节流
+ * 主要作用于 例如 监听鼠标移动 频繁触发的行为，间隔触发执行
+ * @template T
+ * @template R
+ * @param {(this: T, ...args: any[]) => R} fn
+ * @param {number} [wait=100]
+ * @param {number} [type=1] 1 使用时间戳 2 使用setTimeout倒计时
+ * @returns
+ */
+export declare function throttle<T extends object, R = void>(fn: (this: T, ...args: any[]) => R, wait?: number, type?: 1 | 2): (this: T, ...args: any[]) => void;
+/**
+ * 函数防抖
+ * 主要作用 防止点击事件，多次触发函数 合并为一个去执行
+ * @template T
+ * @template R
+ * @param {(this: T, ...args: any[]) => R} fn
+ * @param {number} [delay=100] 函数间隔执行时间
+ * @param {number} [immediate=false] 是否立即执行
+ * @returns
+ */
+export declare function debounce<T extends object, R = void>(fn: (this: T, ...args: any[]) => R, delay?: number, immediate?: boolean): (this: T, ...args: any[]) => void;
