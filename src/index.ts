@@ -120,3 +120,70 @@ export function fileExt(file: string) {
   const ext = file.match(/(\.(?!\d)[a-zA-Z\d]+)$/);
   return ext && ext[0];
 }
+
+/**
+ * 函数节流
+ * 主要作用于 例如 监听鼠标移动 频繁触发的行为，间隔触发执行
+ * @template T
+ * @template R
+ * @param {(this: T, ...args: any[]) => R} fn
+ * @param {number} [wait=100]
+ * @param {number} [type=1] 1 使用时间戳 2 使用setTimeout倒计时
+ * @returns
+ */
+export function throttle<T extends object, R = void>(fn: (this: T, ...args: any[]) => R, wait = 100, type: 1 | 2 = 1) {
+  let previous = 0;
+  let timer: null | number = null;
+  return function(this: T, ...args: any[]) {
+    const context = this;
+    if (type === 1) {
+      const now = Date.now();
+      if (now - previous > wait) {
+        fn.apply(context, args);
+        previous = now;
+      }
+      return;
+    }
+
+    if (timer) window.clearTimeout(timer);
+    timer = window.setTimeout(function() {
+      fn.apply(context, args);
+      timer = null;
+    }, wait);
+  };
+}
+
+/**
+ * 函数防抖
+ * 主要作用 防止点击事件，多次触发函数 合并为一个去执行
+ * @template T
+ * @template R
+ * @param {(this: T, ...args: any[]) => R} fn
+ * @param {number} [delay=100] 函数间隔执行时间
+ * @param {number} [immediate=false] 是否立即执行
+ * @returns
+ */
+export function debounce<T extends object, R = void>(
+  fn: (this: T, ...args: any[]) => R,
+  delay = 100,
+  immediate = false,
+) {
+  let timer: number | null = null;
+  return function(this: T, ...args: any[]) {
+    const context = this;
+
+    if (timer) window.clearTimeout(timer);
+    if (immediate) {
+      const callNow = !timer;
+      timer = window.setTimeout(function() {
+        timer = null;
+      }, delay);
+      if (callNow) fn.apply(context, args);
+      return;
+    }
+
+    timer = window.setTimeout(function() {
+      fn.apply(context, args);
+    }, delay);
+  };
+}

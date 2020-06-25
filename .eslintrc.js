@@ -41,6 +41,15 @@ module.exports = {
      * @see https://cloud.tencent.com/developer/section/1135777
      */
     'no-unused-expressions': ['error', { "allowShortCircuit": true, "allowTernary": true }],
+    /**
+     * @see https://github.com/typescript-eslint/typescript-eslint/blob/v2.8.0/packages/eslint-plugin/docs/rules/no-this-alias.md
+     */
+    '@typescript-eslint/no-this-alias': [
+      'warn',
+      {
+        allowedNames: ['context'],
+      }
+    ],
   },
   parserOptions: {
     parser: '@typescript-eslint/parser',
