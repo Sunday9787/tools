@@ -95,3 +95,4 @@ export declare function throttle<T extends object, R = void>(fn: (this: T, ...ar
  * @returns
  */
 export declare function debounce<T extends object, R = void>(fn: (this: T, ...args: any[]) => R, delay?: number, immediate?: boolean): (this: T, ...args: any[]) => void;
+export {};
