@@ -1,0 +1,17 @@
+*.sh
+build
+test
+
+.vscode
+.editorconfig
+.gitignore
+.babelrc.js
+.browserslistrc
+.eslintrc.js
+.eslintignore
+.commitlintrc.js
+.prettierrc.js
+.huskyrc.js
+jest.config.js
+lint-staged.config.js
+yarn.lock

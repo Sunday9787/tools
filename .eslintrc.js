@@ -50,6 +50,13 @@ module.exports = {
         allowedNames: ['context'],
       }
     ],
+    '@typescript-eslint/no-this-alias': [
+      'error',
+      {
+        allowDestructuring: true, // Allow `const { props, state } = this`; false by default
+        allowedNames: ['self', 'context'], // Allow `const self = this`; `[]` by default
+      },
+    ],
   },
   parserOptions: {
     parser: '@typescript-eslint/parser',
