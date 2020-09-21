@@ -1,2 +1,2 @@
 # !/bin/sh
-yarn build:pord & npm publish
+yarn build & yarn build:pord & npm publish
