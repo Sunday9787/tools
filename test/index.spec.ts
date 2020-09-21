@@ -173,4 +173,14 @@ describe('tools.js', () => {
       expect(tools.fileExt('asdasdjpg')).toBeNull();
     });
   });
+
+  describe('tools.randomColor', () => {
+    test('tools.randomColor() should return hex color', () => {
+      expect(tools.randomColor()).toHaveLength(7);
+    });
+
+    test('tools.randomColor() should return hex color', () => {
+      expect(tools.randomColor()).toMatch(/^#([a-fA-F\d]{6})$/);
+    });
+  });
 });

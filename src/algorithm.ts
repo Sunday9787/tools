@@ -223,3 +223,34 @@ export function* fib(x: number) {
     n++;
   }
 }
+
+export function countNumber(num: number): number {
+  if (num < 10) return num;
+  const value = String(num);
+  const result = Array.prototype.reduce.call(
+    value,
+    (previousValue, currentValue) => {
+      return Number(previousValue) + Number(currentValue);
+    },
+    0,
+  ) as number;
+
+  if (result < 10 && num < 10) return num;
+  return countNumber(result);
+}
+
+/**
+ * 洗牌
+ * @param size
+ * @param domain
+ */
+export function shuffle(size: number, domain: number[]) {
+  const [min, max] = domain;
+
+  return Array(size * 2)
+    .fill(0)
+    .map((_, i) => i)
+    .sort(() => (Math.random() > 0.5 ? -1 : 1))
+    .filter(v => v <= max && v >= min)
+    .slice(0, size);
+}

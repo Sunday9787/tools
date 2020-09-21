@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-type Dictionary<T> = { [key: string]: T };
 
 /**
  * 数字转换为大写汉字
@@ -30,10 +29,14 @@ export function encrypPhone(phone: string) {
  * @export
  * @param {Array<any>} res
  * @param {string} key
- * @param {'desc' | 'asc'} [order='desc']
+ * @param {'desc' | 'asc'} [order='asc']
  * @returns
  */
-export function sort<T extends Dictionary<any>, K extends keyof T>(arry: T[], key: K, order: 'desc' | 'asc' = 'asc') {
+export function sort<T extends Record<string, any>, K extends keyof T>(
+  arry: T[],
+  key: K,
+  order: 'desc' | 'asc' = 'asc',
+) {
   function compare(property: K) {
     return function(firstEl: T, secondEl: T) {
       const value1: any = firstEl[property];
@@ -186,4 +189,21 @@ export function debounce<T extends object, R = void>(
       fn.apply(context, args);
     }, delay);
   };
+}
+
+/**
+ * Hex Color
+ * @description 随机生成 hex 颜色
+ */
+export function randomColor() {
+  const arrHex = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'];
+  let strHex = '#',
+    index = 0;
+
+  for (let i = 0; i < 6; i++) {
+    index = Math.round(Math.random() * 15);
+    strHex += arrHex[index];
+  }
+
+  return strHex;
 }

@@ -111,4 +111,14 @@ describe('algorithm', () => {
       expect(algorithm.factorialize2(5)).toBe(120);
     });
   });
+
+  describe('algorithm.shuffle', () => {
+    test('shuffle(50, [0, 10]) 应该返回 长度10的数组', () => {
+      expect(algorithm.shuffle(50, [0, 9])).toHaveLength(10);
+    });
+
+    test('shuffle(50, [5, 20]) 应该返回 长度15的数组', () => {
+      expect(algorithm.shuffle(50, [5, 19])).toHaveLength(15);
+    });
+  });
 });
