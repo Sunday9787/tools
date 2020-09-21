@@ -121,4 +121,80 @@ describe('algorithm', () => {
       expect(algorithm.shuffle(50, [5, 19])).toHaveLength(15);
     });
   });
+
+  describe('algorithm.unique', () => {
+    test('algorithm.unique([1, 2, 2, 4, 5) 应该返回 长度5的数组', () => {
+      expect(algorithm.unique([1, 2, 2, 4, 5])).toHaveLength(4);
+    });
+
+    test('algorithm.unique([1, 2, 2, 4, 5]) 应该返回 数组[1, 2, 4, 5]', () => {
+      expect(algorithm.unique([1, 2, 2, 4, 5])).toEqual([1, 2, 4, 5]);
+    });
+
+    test('algorithm.unique([1, 2, 5, 4, 5]) 应该返回 数组[1, 2, 5, 4]', () => {
+      expect(algorithm.unique([1, 2, 5, 4, 5])).toEqual([1, 2, 5, 4]);
+    });
+  });
+
+  describe('algorithm.unique2', () => {
+    test('algorithm.unique2([1, 2, 2, 4, 5) 应该返回 长度5的数组', () => {
+      expect(algorithm.unique2([1, 2, 2, 4, 5])).toHaveLength(4);
+    });
+
+    test('algorithm.unique2([1, 2, 2, 4, 5]) 应该返回 数组[1, 2, 4, 5]', () => {
+      expect(algorithm.unique2([1, 2, 2, 4, 5])).toEqual([1, 2, 4, 5]);
+    });
+
+    test('algorithm.unique2([1, 2, 5, 4, 5]) 应该返回 数组[1, 2, 5, 4]', () => {
+      expect(algorithm.unique2([1, 2, 5, 4, 5])).toEqual([1, 2, 4, 5]);
+    });
+  });
+
+  describe('algorithm.twoSum', () => {
+    test('algorithm.twoSum([1, 2, 3, 4, 5], 5) 应该返回 长度2的数组', () => {
+      expect(algorithm.twoSum([1, 2, 3, 4, 5], 5)).toHaveLength(2);
+    });
+
+    test('algorithm.twoSum([1, 2, 3, 4, 5], 5) 应该返回 数组[1, 2]', () => {
+      expect(algorithm.twoSum([1, 2, 3, 4, 5], 5)).toEqual([1, 2]);
+    });
+
+    test('algorithm.twoSum([1, 2, 3, 4, 5], 6) 应该返回 数组[1, 3]', () => {
+      expect(algorithm.twoSum([1, 2, 3, 4, 5], 6)).toEqual([1, 3]);
+    });
+  });
+
+  describe('algorithm.selectSort2', () => {
+    test('algorithm.selectSort2([1, 3, 5, 2, 4, 6, 99, 8, 0]) 应该返回 [1, 2, 3, 5, 6, 7, 8, 99]数组', () => {
+      expect(algorithm.selectSort2([1, 3, 5, 2, 4, 6, 99, 8])).toEqual([1, 2, 3, 4, 5, 6, 8, 99]);
+    });
+
+    test('algorithm.selectSort2([1, 3, 5, 2, 4, 6, 99, 8, 0]) 应该返回 [0, 1, 2, 3, 5, 6, 7, 8, 99]数组', () => {
+      expect(algorithm.selectSort2([1, 3, 5, 2, 4, 6, 99, 8, 0])).toEqual([0, 1, 2, 3, 4, 5, 6, 8, 99]);
+    });
+  });
+
+  describe('algorithm.findMax', () => {
+    test('algorithm.findMax([1, 2, 3, 4, 5]) 应该返回 长度2的数组', () => {
+      expect(algorithm.findMax([1, 2, 3, 4, 5])).toHaveLength(2);
+    });
+
+    test('algorithm.findMax([1, 2, 3, 4, 5]) 应该返回 [5, 5]', () => {
+      expect(algorithm.findMax([1, 2, 3, 4, 5])).toEqual([5, 4]);
+    });
+
+    test('algorithm.findMax([1, 2, 3, 4, 5]) 应该返回 [99, 2]', () => {
+      expect(algorithm.findMax([1, 2, 99, 4, 5])).toEqual([99, 2]);
+    });
+  });
+
+  describe('algorithm.flat', () => {
+    test('algorithm.flat([1, [2, [3, [4, 5]]]]) 应该返回 长度4的数组', () => {
+      expect(algorithm.flat([1, [2, [3, [4, 5]]]])).toHaveLength(5);
+    });
+
+    test('algorithm.flat([1, 2, [3, 4, 5]]) 应该返回 数组[1, 2, 3, 4, 5]', () => {
+      expect(algorithm.flat([1, 2, [3, 4, 5]])).toEqual([1, 2, 3, 4, 5]);
+    });
+  });
 });
