@@ -26,6 +26,104 @@
 
     document.body.appendChild(els);
     // document.body.appendChild(phoneEl);
+
+    var nodes = [8, 3, 10, 1, 6, 14, 4, 7, 13];
+
+    var binaryTree = new tools.BinaryTree();
+
+    nodes.forEach(key => {
+      binaryTree.insert(key);
+    });
   </script>
+  <style>
+    @keyframes rotate {
+      to {
+        transform: rotate3d(0, 0, 1, -360deg);
+      }
+    }
+
+    .mian {
+      --size: 200px;
+      --black: black;
+      --white: red;
+      overflow: hidden;
+      position: relative;
+      height: var(--size);
+      width: var(--size);
+      margin: 0 auto;
+      animation: rotate 1.5s infinite ease;
+    }
+
+    .round {
+      position: absolute;
+      top: 0;
+      width: 50%;
+      height: 100%;
+    }
+
+    .round::after {
+      position: absolute;
+      z-index: 2;
+      content: '';
+      display: block;
+      width: calc(var(--size) / 2 / 4);
+      height: calc(var(--size) / 2 / 4);
+      border-radius: 50%;
+    }
+
+    .round > div {
+      position: absolute;
+      display: block;
+      width: calc(var(--size) / 2);
+      height: calc(var(--size) / 2);
+      border-radius: 50%;
+    }
+
+    .round:first-of-type {
+      left: 0;
+      background-color: var(--black);
+      border-radius: var(--size) 0 0 var(--size);
+    }
+
+    .round:first-of-type > div {
+      top: 0;
+      right: -50%;
+      background-color: var(--white);
+    }
+
+    .round:last-of-type > div {
+      bottom: 0;
+      left: -50%;
+      background-color: var(--black);
+    }
+
+    .round:first-of-type::after {
+      left: 75%;
+      top: 75%;
+      transform: translate(0, -50%);
+      background-color: var(--white);
+    }
+
+    .round:last-of-type {
+      right: 0;
+      background-color: var(--white);
+      border-radius: 0 var(--size) var(--size) 0;
+    }
+
+    .round:last-of-type::after {
+      right: 75%;
+      bottom: 75%;
+      transform: translate(0, 50%);
+      background-color: var(--black);
+    }
+  </style>
+  <section class="mian">
+    <div class="round">
+      <div></div>
+    </div>
+    <div class="round">
+      <div></div>
+    </div>
+  </section>
 </body>
 </html>

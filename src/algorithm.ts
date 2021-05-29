@@ -487,3 +487,233 @@ export function flat(arr: any[]) {
 
   return result;
 }
+
+class Node {
+  public key: number;
+  public left: Node | null = null;
+  public right: Node | null = null;
+  constructor(key: number) {
+    this.key = key;
+  }
+}
+
+export class BinaryTree {
+  public root: null | Node = null;
+
+  public insert(key: number) {
+    const node = new Node(key);
+    if (this.root) {
+      this.insertNode(this.root, node);
+      return;
+    }
+    this.root = node;
+  }
+
+  private insertNode(node: Node, newNode: Node) {
+    // 节点值 小于 根节点 插入左边  反之 插入右边
+    if (newNode.key < node.key) {
+      // 插入前 判断当前node 是否为空 是 生成节点 否则 继续 insertNode
+      if (node.left === null) {
+        node.left = newNode;
+      } else {
+        this.insertNode(node.left, newNode);
+      }
+    } else {
+      if (node.right === null) {
+        node.right = newNode;
+      } else {
+        this.insertNode(node.right, newNode);
+      }
+    }
+  }
+
+  // 中序遍历
+  private inOrderTraverseNode(root: Node | null, callback: Function) {
+    if (root) {
+      this.inOrderTraverseNode(root.left, callback);
+      callback(root.key);
+      this.inOrderTraverseNode(root.right, callback);
+    }
+  }
+
+  public inOrderTraverse(callback: Function) {
+    this.inOrderTraverseNode(this.root, callback);
+  }
+
+  // 前序遍历
+  private preOrderTraverseNode(root: Node | null, callback: Function) {
+    if (root) {
+      callback(root.key);
+      this.preOrderTraverseNode(root.left, callback);
+      this.preOrderTraverseNode(root.right, callback);
+    }
+  }
+
+  public preOrderTraverse(callback: Function) {
+    this.preOrderTraverseNode(this.root, callback);
+  }
+
+  private searchNode(key: number, node: Node | null, callback: Function) {
+    if (!node) return;
+
+    if (key > node.key) {
+      this.searchNode(key, node.right, callback);
+    } else if (key < node.key) {
+      this.searchNode(key, node.left, callback);
+    } else {
+      callback(node);
+    }
+  }
+
+  public preOrderTraverse2(node: Node, callback: Function) {
+    if (!node) return;
+
+    const stack: Node[] = [];
+
+    stack.unshift(node);
+
+    while (stack.length) {
+      const child = stack.pop()!;
+      callback(child);
+      if (child.right) stack.push(child.right);
+      if (child.left) stack.push(child.left);
+    }
+  }
+
+  public search(key: number, callback: Function) {
+    this.searchNode(key, this.root, callback);
+  }
+
+  private minNode(node: Node | null): Node {
+    while (node && node.left) {
+      node = node.left;
+    }
+    return node!;
+  }
+
+  public minOrder() {
+    return this.minNode(this.root);
+  }
+
+  private maxNode(node: Node | null): Node {
+    while (node && node.right) {
+      node = node.right;
+    }
+    return node!;
+  }
+
+  public maxOrder() {
+    return this.maxNode(this.root);
+  }
+
+  private findMinNode(node: Node | null): Node {
+    while (node && node.left) {
+      node = node.left;
+    }
+    return node!;
+  }
+
+  public removeNode(key: number, node: Node | null) {
+    if (!node) return null;
+
+    if (key > node.key) {
+      node.right = this.removeNode(key, node.right);
+      return node;
+    } else if (key < node.key) {
+      node.left = this.removeNode(key, node.left);
+      return node;
+    } else {
+      // 没有子节点 直接返回 null
+      if (!node.left && !node.right) {
+        node = null;
+        return node;
+      }
+
+      /**
+       * 删除的节点 没有 左节点
+       * 返回 右节点
+       * 没有 右节点
+       * 返回 左节点
+       */
+      if (!node.left) {
+        node = node.right;
+        return node;
+      } else if (!node.right) {
+        node = node.left;
+        return node;
+      }
+
+      /**
+       * 如果 被删除的节点 拥有 左右 子节点
+       * 那么 查找 右节点 的最小值 替换到 被删除的节点 key
+       * 删除 最小值的节点
+       * 返回 node
+       */
+      const aux = this.findMinNode(node.right);
+
+      node.key = aux.key;
+      node.right = this.removeNode(aux.key, aux);
+      return node;
+    }
+  }
+
+  /**
+   * 翻转二叉树
+   * @private
+   * @param node
+   */
+  private reverseNode(node: Node | null) {
+    if (!node) return;
+
+    const tempLeft = node.left;
+    const tempRight = node.right;
+
+    node.right = tempLeft;
+    this.reverseNode(node.right);
+
+    node.left = tempRight;
+    this.reverseNode(node.left);
+  }
+
+  public reverse() {
+    this.reverseNode(this.root);
+  }
+
+  public remove(key: number) {
+    this.removeNode(key, this.root);
+  }
+}
+
+/**
+ * 深度优先
+ * @param node
+ */
+export function deepTraversal<T extends Element>(node: T) {
+  console.log(node);
+  if (node.childNodes) {
+    Array.prototype.forEach.call(node.childNodes, (item: T) => {
+      deepTraversal(item);
+    });
+  }
+}
+
+/**
+ * 广度优先
+ *
+ * @export
+ * @template T
+ * @param {T} node
+ */
+export function breadthTraversal<T extends Element>(node: T) {
+  const queue: T[] = [];
+  queue.unshift(node);
+
+  while (queue.length) {
+    const childrenItem = queue.pop()!;
+    console.log(childrenItem);
+    const childrenList: T[] = Array.prototype.slice.call(childrenItem.childNodes, 0);
+    for (let i = 0; i < childrenList.length; i++) {
+      queue.push(childrenList[i]);
+    }
+  }
+}

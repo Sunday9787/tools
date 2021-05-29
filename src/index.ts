@@ -191,6 +191,20 @@ export function debounce<T extends object, R = void>(
   };
 }
 
+export function _new<R, T extends Function>(constructor: T, ...args: any[]): R {
+  const obj = Object.create(constructor.prototype);
+  const instance = constructor.apply(obj, ...args);
+
+  // 根据规范，返回 null 和 undefined 不处理，依然返回obj
+  return typeof instance === 'object' ? instance : obj;
+}
+
+export function bind<T extends Function>(origin: T, target: T) {
+  return function(...arg: any[]) {
+    origin.apply(target, arg);
+  };
+}
+
 /**
  * Hex Color
  * @description 随机生成 hex 颜色

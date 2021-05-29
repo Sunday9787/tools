@@ -1,6 +1,4 @@
-declare type Dictionary<T> = {
-    [key: string]: T;
-};
+export * from './algorithm';
 /**
  * 数字转换为大写汉字
  */
@@ -20,10 +18,10 @@ export declare function encrypPhone(phone: string): string;
  * @export
  * @param {Array<any>} res
  * @param {string} key
- * @param {'desc' | 'asc'} [order='desc']
+ * @param {'desc' | 'asc'} [order='asc']
  * @returns
  */
-export declare function sort<T extends Dictionary<any>, K extends keyof T>(arry: T[], key: K, order?: 'desc' | 'asc'): T[];
+export declare function sort<T extends Record<string, any>, K extends keyof T>(arry: T[], key: K, order?: 'desc' | 'asc'): T[];
 /**
  * 判断字符串是不是由数字组成
  * @param str
@@ -95,4 +93,18 @@ export declare function throttle<T extends object, R = void>(fn: (this: T, ...ar
  * @returns
  */
 export declare function debounce<T extends object, R = void>(fn: (this: T, ...args: any[]) => R, delay?: number, immediate?: boolean): (this: T, ...args: any[]) => void;
-export {};
+export declare function _new<R, T extends Function>(constructor: T, ...args: any[]): R;
+export declare function bind<T extends Function>(origin: T, target: T): (...arg: any[]) => void;
+/**
+ * 深度优先
+ * @param node
+ */
+export declare function deepTraversal<T extends Node>(node: T): void;
+/**
+ * 广度优先
+ *
+ * @export
+ * @template T
+ * @param {T} node
+ */
+export declare function breadthTraversal<T extends Node>(node: T): void;
